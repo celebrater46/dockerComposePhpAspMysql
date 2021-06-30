@@ -1,6 +1,6 @@
 version: '3'
 services:
-  app:
+  php-app:
     container_name: php
     build:
       context: ./php
@@ -11,7 +11,19 @@ services:
       - ./html:/var/www/html
     ports:
       - "8080:80"
-    network_mode: "sample-network" # 上で作成したカスタムネットワークの名前を記載する
+    network_mode: "sample-network2" # 上で作成したカスタムネットワークの名前を記載する
+
+  dotnet:
+    container_name: dotnet
+    build:
+      context: ./asp
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - ./asp/source:/source
+    ports:
+      - "5051:5001"
+    network_mode: "sample-network2" # 上で作成したカスタムネットワークの名前を記載する
 
   db1:
     container_name: mysql
@@ -23,7 +35,7 @@ services:
     volumes:
       # MySQLの設定ファイル
       - ./mysql/mysql_conf:/etc/mysql/conf.d
-    network_mode: "sample-network"
+    network_mode: "sample-network2"
 
 networks:
-  sample-network:
+  sample-network2:
