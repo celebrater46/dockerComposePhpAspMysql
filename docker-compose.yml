@@ -16,7 +16,7 @@ services:
   dotnet:
     container_name: dotnet
     build:
-      context: ./asp
+      context: ./dotnet-docker/samples/aspnetapp
       dockerfile: Dockerfile
     tty: true
     volumes:
