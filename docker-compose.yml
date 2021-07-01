@@ -21,6 +21,7 @@ services:
     tty: true
     volumes:
       - ./asp/source:/source
+#      - ./dotnet-docker/samples/aspnetapp/aspnetapp:/source
     ports:
       - "5051:5001"
     network_mode: "sample-network2" # 上で作成したカスタムネットワークの名前を記載する
